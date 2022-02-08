@@ -1,0 +1,25 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Email</th>
+      <th scope="col">Favorite</th>
+      <ng-content select=".head-cell"></ng-content>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of data; index as i">
+      <td>{{ d.id }}</td>
+      <td>{{ d.name }}</td>
+      <td>{{ d.phone | phone }}</td>
+      <td>{{ d.email }}</td>
+      <td>{{ d.favorite }}</td>
+      <ng-template
+        [ngTemplateOutlet]="injectedCells"
+        [ngTemplateOutletContext]="{ $implicit: d }"
+      ></ng-template>
+    </tr>
+  </tbody>
+</table>

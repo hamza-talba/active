@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row justify-content-between">
+    <div class="col-3">
+      <label class="mr-4">Search</label>
+      <input
+        class="form-control"
+        type="text"
+        name="searchText"
+        [(ngModel)]="searchText"
+      />
+    </div>
+    <div class="col-2">
+      <br />
+      <button class="btn btn-primary" (click)="open()">add</button>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <app-contacts-table [data]="contacts$ | async | filter: searchText">
+        <th class="head-cell">Edit</th>
+        <th class="head-cell">Delete</th>
+        <ng-template let-item>
+          <td class="cursor-pointer text-primary" (click)="open(item)">Edit</td>
+          <td class="cursor-pointer text-danger" (click)="delete(item)">
+            Delete
+          </td>
+        </ng-template>
+      </app-contacts-table>
+    </div>
+  </div>
+</div>

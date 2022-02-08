@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row justify-content-end">
+    <div class="col-2">
+      <br />
+      <button class="btn btn-primary" (click)="open()">add to fav</button>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <app-contacts-table [data]="contacts$ | async"> </app-contacts-table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title">Hi there!</h4>
+  <button type="button" class="close" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col">
+      <app-contacts-table [data]="contacts$ | async">
+        <th class="head-cell">Favorite status</th>
+        <ng-template let-item>
+          <td class="row-cell">
+            <input
+              type="checkbox"
+              [value]="item.favorite"
+              [checked]="item.favorite"
+              (change)="changeFavStatus(item)"
+            />
+          </td>
+        </ng-template>
+      </app-contacts-table>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark">Close</button>
+</div>

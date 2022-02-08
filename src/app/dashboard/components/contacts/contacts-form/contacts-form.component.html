@@ -1,0 +1,170 @@
+<div class="modal-header">
+  <h4 class="modal-title">Hi there!</h4>
+  <button type="button" class="close" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="contactsForm">
+    <div class="row">
+      <div class="form-group col">
+        <label for="name">
+          Name
+          <span *ngIf="hasValidator('name', 'required')" class="text-danger"
+            >*</span
+          >
+        </label>
+        <input
+          type="text"
+          placeholder="Name"
+          formControlName="name"
+          id="name"
+          [required]="hasValidator('name', 'required')"
+          [attr.aria-invalid]="
+            contactsFormControls.name.invalid &&
+            contactsFormControls.name.touched
+          "
+          class="form-control"
+        />
+
+        <ng-container
+          *ngIf="
+            contactsFormControls.name.invalid &&
+            contactsFormControls.name.touched
+          "
+        >
+          <p
+            class="alert alert-danger m-0 mt-1"
+            *ngIf="contactsFormControls.name.errors?.required"
+          >
+            Name Is Reqiured
+          </p>
+        </ng-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col">
+        <label for="phone">
+          Phone
+          <span *ngIf="hasValidator('phone', 'required')" class="text-danger"
+            >*</span
+          >
+        </label>
+        <input
+          type="text"
+          placeholder="Phone"
+          formControlName="phone"
+          id="phone"
+          [required]="hasValidator('phone', 'required')"
+          [attr.aria-invalid]="
+            contactsFormControls.phone.invalid &&
+            contactsFormControls.phone.touched
+          "
+          class="form-control"
+        />
+
+        <ng-container
+          *ngIf="
+            contactsFormControls.phone.invalid &&
+            contactsFormControls.phone.touched
+          "
+        >
+          <p
+            class="alert alert-danger m-0 mt-1"
+            *ngIf="contactsFormControls.phone.errors?.required"
+          >
+            Phone Is Reqiured
+          </p>
+          <p
+            class="alert alert-danger m-0 mt-1"
+            *ngIf="contactsFormControls.phone.errors"
+          >
+            Phone Must Contain Numbers Only
+          </p>
+        </ng-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col">
+        <label for="email">
+          Email
+          <span *ngIf="hasValidator('email', 'required')" class="text-danger"
+            >*</span
+          >
+        </label>
+        <input
+          type="email"
+          placeholder="Email"
+          formControlName="email"
+          id="email"
+          [required]="hasValidator('email', 'required')"
+          [attr.aria-invalid]="
+            contactsFormControls.email.invalid &&
+            contactsFormControls.email.touched
+          "
+          class="form-control"
+        />
+
+        <ng-container
+          *ngIf="
+            contactsFormControls.email.invalid &&
+            contactsFormControls.email.touched
+          "
+        >
+          <p
+            class="alert alert-danger m-0 mt-1"
+            *ngIf="contactsFormControls.email.errors?.required"
+          >
+            Email Is Reqiured
+          </p>
+          <p
+            class="alert alert-danger m-0 mt-1"
+            *ngIf="contactsFormControls.email.errors"
+          >
+            Email Must Follow This Form "Example@mail.com"
+          </p>
+        </ng-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col">
+        <label for="favorite">
+          Favorite
+          <span *ngIf="hasValidator('favorite', 'required')" class="text-danger"
+            >*</span
+          >
+        </label>
+        <input
+          type="checkbox"
+          placeholder="Favorite"
+          formControlName="favorite"
+          id="favorite"
+          [required]="hasValidator('favorite', 'required')"
+          [attr.aria-invalid]="
+            contactsFormControls.favorite.invalid &&
+            contactsFormControls.favorite.touched
+          "
+          class="form-control"
+        />
+
+        <ng-container
+          *ngIf="
+            contactsFormControls.favorite.invalid &&
+            contactsFormControls.favorite.touched
+          "
+        >
+          <p
+            class="alert alert-danger m-0 mt-1"
+            *ngIf="contactsFormControls.favorite.errors?.required"
+          >
+            Favorite Is Reqiured
+          </p>
+        </ng-container>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-outline-primary" (click)="save()">Save</button>
+  <button type="button" class="btn btn-outline-dark">Close</button>
+</div>
