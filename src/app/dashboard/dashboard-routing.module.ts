@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { FavoriteContactsComponent } from './components/favorite-contacts/favorite-contacts.component';
-import { ContactsResolver } from './resolver/contacts.resolver';
 
 const routes: Routes = [
 {
@@ -13,25 +12,20 @@ const routes: Routes = [
     {
       path:"contacts",
       component:ContactsComponent,
-      resolve: {
-        contacts: ContactsResolver
-      },
-      pathMatch:'full'
-    },
+
+     },
     {
       path:"favorite-contacts",
       component:FavoriteContactsComponent,
-      resolve: {
-        contacts: ContactsResolver
-      },
-      pathMatch:'full'
+
+     },
+     {
+      path:"**",
+      redirectTo:"contacts"
     }
   ]
 },
-  {
-    path:"**",
-    redirectTo:"/dashboard/contacts"
-  }
+
 ];
 
 @NgModule({

@@ -7,7 +7,7 @@ import { Contact } from '../../models/contacts.model';
 import { getAllContacts } from '../../store/dashboard.selectors';
 import { Observable } from 'rxjs';
 import { DeleteAlertComponent } from './delete-alert/delete-alert.component';
-import { contactActionTypes } from '../../store/dashboard.actions';
+import { contactActionTypes, loadContacts, startLoading } from '../../store/dashboard.actions';
 import { Update } from '@ngrx/entity';
 
 @Component({
@@ -21,7 +21,8 @@ export class ContactsComponent implements OnInit {
   constructor(private modalService: NgbModal, private store: Store<AppState>) {}
 
   ngOnInit(): void {
-     this.contacts$ = this.store.select(getAllContacts);
+    this.store.dispatch(loadContacts());
+    this.contacts$ = this.store.select(getAllContacts);
   }
 
   open(contact?:Contact) {

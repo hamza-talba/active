@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { Contact } from 'src/app/dashboard/models/contacts.model';
-import { contactActionTypes } from 'src/app/dashboard/store/dashboard.actions';
+import { contactActionTypes, startLoading } from 'src/app/dashboard/store/dashboard.actions';
 import { AppState } from 'src/app/store/reducers';
 
 @Component({
@@ -19,8 +19,10 @@ export class DeleteAlertComponent implements OnInit {
   }
 
   delete(){
+    this.store.dispatch(startLoading());
     const contactId = this.contact.id
     this.store.dispatch(contactActionTypes.deleteContact({contactId}));
-
+    this.activeModal.close()
   }
+
 }

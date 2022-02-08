@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AppState } from './store/reducers';
+
 
 @Component({
   selector: 'app-root',
@@ -8,12 +7,6 @@ import { AppState } from './store/reducers';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor( ) {
-
-  }
-
-  ngOnInit() {
-  }
 
 
 }

@@ -7,6 +7,7 @@ import { AddToFavModalComponent } from './add-to-fav-modal/add-to-fav-modal.comp
 import { Observable } from 'rxjs';
 import { Contact } from '../../models/contacts.model';
 import { filter, tap, map } from 'rxjs/operators';
+import { loadContacts } from '../../store/dashboard.actions';
 
 @Component({
   selector: 'app-favorite-contacts',
@@ -18,11 +19,11 @@ export class FavoriteContactsComponent implements OnInit {
   constructor(private modalService: NgbModal, private store: Store<AppState>) {}
 
   ngOnInit(): void {
+    this.store.dispatch(loadContacts());
      this.contacts$ = this.store.select(getAllContacts).pipe(map((res:Contact[]) => res.filter(i => i.favorite == true)));
   }
 
   open() {
-    const modalRef = this.modalService.open(AddToFavModalComponent,{size:'lg'});
-    modalRef.componentInstance.name = 'World';
-  }
+     this.modalService.open(AddToFavModalComponent,{size:'lg'});
+   }
 }

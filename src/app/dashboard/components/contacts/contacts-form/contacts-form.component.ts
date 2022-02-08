@@ -5,7 +5,7 @@ import { Update } from '@ngrx/entity';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/reducers';
 import { Contact } from '../../../models/contacts.model';
-import { contactActionTypes, createContact } from '../../../store/dashboard.actions';
+import { contactActionTypes, createContact, startLoading } from '../../../store/dashboard.actions';
 import * as uuid from 'uuid'
 @Component({
   selector: 'app-contacts-form',
@@ -44,9 +44,11 @@ export class ContactsFormComponent implements OnInit {
   }
   save(){
     if(this.contactsForm.invalid){
+      this.contactsForm.markAllAsTouched();
       return
     }
     console.log(this.contactsForm.value)
+    this.store.dispatch(startLoading());
     if(this.contact){
       const update: Update<Contact> = {
         id: this.contact.id,
@@ -59,6 +61,7 @@ export class ContactsFormComponent implements OnInit {
       const contact : Contact = {id: uuid.v4(),...this.contactsForm.value}
       this.store.dispatch(contactActionTypes.createContact({contact}));
     }
+    this.activeModal.close()
 
   }
 }

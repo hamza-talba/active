@@ -13,7 +13,7 @@ export class ContactEffects {
     this.actions$.pipe(
       ofType(contactActionTypes.loadContacts),
       concatMap(() => this.contactService.getAllContacts()),
-      map((contacts:Contact[]) => contactActionTypes.contactsLoaded({contacts}))
+      map((contacts:Contact[]) => contactActionTypes.contactsLoaded({contacts})),
     )
   );
 
@@ -21,24 +21,24 @@ export class ContactEffects {
     this.actions$.pipe(
       ofType(contactActionTypes.createContact),
       concatMap((action) => this.contactService.createContact(action.contact)),
-    ),
-    {dispatch: false}
-  );
+      map(() => contactActionTypes.stopLoading())
+    )
+   );
 
   deleteContact$ = createEffect(() =>
     this.actions$.pipe(
       ofType(contactActionTypes.deleteContact),
-      concatMap((action) => this.contactService.deleteContact(action.contactId))
-    ),
-    {dispatch: false}
+      concatMap((action) => this.contactService.deleteContact(action.contactId)),
+      map(() => contactActionTypes.stopLoading())
+    )
   );
 
   updateContact$ = createEffect(() =>
     this.actions$.pipe(
       ofType(contactActionTypes.updateContact),
-      concatMap((action) => this.contactService.updateContact(action.update.id, action.update.changes))
-    ),
-    {dispatch: false}
+      concatMap((action) => this.contactService.updateContact(action.update.id, action.update.changes)),
+      map(() => contactActionTypes.stopLoading())
+    )
   );
 
   constructor(private contactService: ContactService, private actions$: Actions, private router: Router) {}

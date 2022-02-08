@@ -12,3 +12,5 @@ export const areContactsLoaded = createSelector(
   contactsFeatureSelector,
   state => state.contactsLoaded
 );
+
+export const loadingSelector = createSelector(contactsFeatureSelector,state => state.loading)

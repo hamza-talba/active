@@ -34,6 +34,5 @@ import { FilterPipe } from './pipes/filter.pipe';
     StoreModule.forFeature('contact', contactReducer),
     EffectsModule.forFeature([ContactEffects])
   ],
-  providers:[ContactService]
 })
 export class DashboardModule { }

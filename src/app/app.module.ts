@@ -8,12 +8,11 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
  import { reducers } from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
-import { ContactsResolver } from './dashboard/resolver/contacts.resolver';
 
 @NgModule({
   declarations: [
       AppComponent,
-       ],
+        ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,7 +26,6 @@ import { ContactsResolver } from './dashboard/resolver/contacts.resolver';
     }),
     StoreDevtoolsModule.instrument({maxAge: 25}),
   ],
-  providers: [ContactsResolver],
-  bootstrap: [AppComponent]
+   bootstrap: [AppComponent]
 })
 export class AppModule { }

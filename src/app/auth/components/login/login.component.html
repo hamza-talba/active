@@ -1,0 +1,105 @@
+<div class="container" style="height: 100vh">
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col-sm-12 col-md-6 col-lg-5">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="contactsForm">
+            <div class="row">
+              <div class="col">
+                email: admin@mail.com
+                <br />
+                password: 123456
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="form-group col">
+                <label for="email">
+                  Email
+                  <span
+                    *ngIf="hasValidator('email', 'required')"
+                    class="text-danger"
+                    >*</span
+                  >
+                </label>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  formControlName="email"
+                  id="email"
+                  [required]="hasValidator('email', 'required')"
+                  [attr.aria-invalid]="
+                    contactsFormControls.email.invalid &&
+                    contactsFormControls.email.touched
+                  "
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col">
+                <label for="Password">
+                  Password
+                  <span
+                    *ngIf="hasValidator('password', 'required')"
+                    class="text-danger"
+                    >*</span
+                  >
+                </label>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  formControlName="password"
+                  id="password"
+                  [required]="hasValidator('password', 'required')"
+                  [attr.aria-invalid]="
+                    contactsFormControls.password.invalid &&
+                    contactsFormControls.password.touched
+                  "
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <button class="btn btn-primary" type="submit" (click)="submit()">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <ng-container
+        *ngIf="
+          contactsFormControls.email.invalid &&
+          contactsFormControls.email.touched
+        "
+      >
+        <p
+          class="alert alert-danger m-0 mt-1"
+          *ngIf="contactsFormControls.email.errors?.required"
+        >
+          Email Is Reqiured
+        </p>
+        <p
+          class="alert alert-danger m-0 mt-1"
+          *ngIf="contactsFormControls.email.errors"
+        >
+          Email Must Follow This Form "Example@mail.com"
+        </p>
+      </ng-container>
+      <ng-container
+        *ngIf="
+          contactsFormControls.password.invalid &&
+          contactsFormControls.password.touched
+        "
+      >
+        <p
+          class="alert alert-danger m-0 mt-1"
+          *ngIf="contactsFormControls.password.errors?.required"
+        >
+          Password Is Reqiured
+        </p>
+      </ng-container>
+    </div>
+  </div>
+</div>

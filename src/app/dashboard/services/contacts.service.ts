@@ -4,7 +4,9 @@
  import * as uuid from 'uuid'
 import { delay, tap } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({
+  providedIn:"root"
+})
 export class ContactService {
   data = [
     {id: uuid.v4(), name: "ahmad", phone:"01212567589",email:"Ahmad@mail.com",favorite:false}
