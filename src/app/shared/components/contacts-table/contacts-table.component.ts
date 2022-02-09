@@ -17,8 +17,4 @@ export class ContactsTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngOnChanges(){
-    console.log(this.data)
-  }
-
 }

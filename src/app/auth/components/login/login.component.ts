@@ -12,6 +12,11 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   contactsForm: FormGroup;
+  alert={
+    active:false,
+    message:"",
+    type:""
+  }
   constructor( private authService:AuthService,private router:Router) {
     this.contactsForm = new FormGroup({
       email: new FormControl("", [Validators.required,Validators.email] ),
@@ -42,12 +47,18 @@ export class LoginComponent implements OnInit {
     }
     this.authService.login({...this.contactsForm.value}).subscribe(
       res => {
-        alert("welcome")
+        this.alert.type="success"
+        this.alert.message="Welcome"
+        this.alert.active = true
         localStorage.setItem("token","active")
         this.router.navigateByUrl("/dashboard/contacts")
 
       }
-    ,err => alert(err)
+    ,err => {
+      this.alert.type="danger"
+        this.alert.message=err
+        this.alert.active = true
+    }
     )
   }
 }

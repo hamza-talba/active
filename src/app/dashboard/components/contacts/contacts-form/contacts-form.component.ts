@@ -47,7 +47,6 @@ export class ContactsFormComponent implements OnInit {
       this.contactsForm.markAllAsTouched();
       return
     }
-    console.log(this.contactsForm.value)
     this.store.dispatch(startLoading());
     if(this.contact){
       const update: Update<Contact> = {

@@ -3,6 +3,9 @@
     <div class="col-sm-12 col-md-6 col-lg-5">
       <div class="card">
         <div class="card-body">
+          <ngb-alert *ngIf="alert.active" [type]="alert.type">{{
+            alert.message
+          }}</ngb-alert>
           <form [formGroup]="contactsForm">
             <div class="row">
               <div class="col">
